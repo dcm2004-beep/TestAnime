@@ -94,10 +94,8 @@ export function createAudio({
         src.connect(g); src.start();
         dur = src.buffer.duration / bend;
       } else if (recipes[name]) {
-        // synth pitch variation: shift the whole recipe via detune on the shared gain path is not
-        // possible, so vary loudness slightly instead (recipes are short transients)
-        g.gain.value *= 0.9 + 0.2 * rng();
-        dur = recipes[name](ctx, g);
+        g.gain.value *= 0.92 + 0.16 * rng();       // slight loudness variation too
+        dur = recipes[name](ctx, g, bend) / bend;  // bend = random pitch multiplier (pitchVar)
       } else { g.disconnect(); return false; }
 
       voices.set(name, active + 1);

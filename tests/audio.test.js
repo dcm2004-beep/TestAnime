@@ -9,7 +9,7 @@ function fakeCtx(state = "suspended") {
   const node = () => ({ connect(n) { return n || node(); }, disconnect() {}, gain: { value: 1 }, frequency: {}, Q: {} });
   const ctx = {
     state, currentTime: 0, sampleRate: 100, destination: node(),
-    createGain: node, createDynamicsCompressor: node,
+    createGain: node, createDynamicsCompressor: node, createWaveShaper: () => ({ ...node(), curve: null, oversample: "none" }),
     createBuffer: (_c, len) => ({ getChannelData: () => new Float32Array(len), duration: 1 }),
     createBufferSource: () => ({ ...node(), playbackRate: { value: 1 }, start() {}, stop() {} }),
     createOscillator: () => ({ ...node(), frequency: { setValueAtTime() {}, exponentialRampToValueAtTime() {} }, start() {}, stop() {} }),
