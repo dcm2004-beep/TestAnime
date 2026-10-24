@@ -35,6 +35,7 @@
         }
 
         isDashing = true;
+        Game.audio.play("dash");
         character.rotation.y = yaw + Math.PI;
 
         const steps = 10;

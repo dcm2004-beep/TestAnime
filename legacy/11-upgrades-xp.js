@@ -324,6 +324,7 @@
 
       function openUpgrade() {
         upgradeOpen = true;
+        Game.audio.play("levelUp");
         upgradePicks--;
         isGamePaused = true;
         document.exitPointerLock();
@@ -437,6 +438,7 @@
         )
           return;
         upgradeChoices[i].f();
+        Game.audio.play("select");
         // 🎯 Mark one-time upgrades so they leave the pool
         if (ONE_TIME_UPGRADES.has(upgradeChoices[i].t)) {
           if (!prog.pickedOneTime) prog.pickedOneTime = {};
@@ -483,6 +485,7 @@
       );
 
       function onEnemyKilled(b) {
+        Game.audio.play("enemyDie");
         const typeXpMult = b.xpMult || 1;
         const xp = (30 + 6 * prog.wave) * (b.isDragon ? 3 : 1) * typeXpMult;
         popAt(b.mesh.position, `+${xp} XP`, "", 1.5, "#74c0fc");
@@ -493,6 +496,7 @@
           prog.kills = 0;
           updateProgHud();
           banner(waveBossPending() ? "⚠ BOSS INCOMING ⚠" : `WAVE ${prog.wave}`);
+          if (!waveBossPending()) Game.audio.play("wave");
         }
       }
       function batChaseSpeed(b, dist, dt) {

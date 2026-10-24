@@ -82,7 +82,8 @@ Debugging: stack frames show `legacy-bundle.js:LINE`; run `__legacyWhere(LINE)` 
   `core/damage.js` (`rollDamage`, blood-debt multiplier, berserk check), `core/eventBus.js`.
 - Differential check: 52,203 randomized comparisons of the original inline functions vs the new modules, 0 mismatches.
 - Unresolved-global check: the only new free names in the bundle are `Game` and `BAT_TYPES` (by design).
-- `npm test`: 20 tests.
+- Sound: `src/view/audio.js` (engine), `src/data/sounds.js` (definitions), `src/view/synth.js` (built-in fallback sounds); 25 trigger lines in `legacy/`. See `assets/sfx/README.md`.
+- `npm test`: 31 tests.
 
 ## 5. Not verified
 No browser run was possible in the build environment (no GLB assets, no WebGL). **Run `SMOKE_TEST.md` once.**

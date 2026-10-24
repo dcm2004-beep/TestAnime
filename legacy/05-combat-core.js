@@ -100,6 +100,7 @@
           b.hp = Math.max(0, b.hp - amount);
         }
         totalDamageDealt += amount;
+        Game.audio.hit(hitType);
 
         // ❄️ Frost Fist — crits slow the enemy
         if (prog.frostFist && hitType === "crit" && !b.isTutorialDummy) {

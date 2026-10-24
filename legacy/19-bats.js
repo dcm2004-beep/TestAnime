@@ -4,6 +4,7 @@
       // 🎯 Ranged bat projectile system
       const batProjectiles = [];
       function spawnBatProjectile(from, to, dmg, color) {
+        Game.audio.play("spit");
         const geo = new THREE.SphereGeometry(0.3, 10, 10);
         const mat = new THREE.MeshBasicMaterial({
           color: color || 0xb168f0,
@@ -613,6 +614,7 @@
 
             if (dist < 2.8 && !isPlayerDead) {
               // 💥 BOOM
+              Game.audio.play("boom");
               const radius = b.explodeRadius;
               const dxp = character.position.x - b.mesh.position.x;
               const dzp = character.position.z - b.mesh.position.z;

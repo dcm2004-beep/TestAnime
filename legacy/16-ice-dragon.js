@@ -103,6 +103,7 @@
       }
 
       function spawnDragonBeam(startPos, targetPos, dmg, type = "ice") {
+        Game.audio.play("beam");
         const isFire = type === "fire";
         const cGlow = isFire ? 0xff2200 : 0x2a8fd1;
         const cMid = isFire ? 0xff5533 : 0x4fb9e8;

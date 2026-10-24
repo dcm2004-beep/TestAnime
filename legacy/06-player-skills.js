@@ -5,6 +5,7 @@
         if (!actions.punch) return;
 
         prog.dragonFistCount = 0;
+        Game.audio.play("dragonFist");
         isPunching = true;
         isSpecialActive = false;
         isDragonFistImmune = true;
@@ -210,6 +211,7 @@
         isPunching = true;
         isSpecialActive = true;
         isSkill2Immune = true; // ⚡ Become fully immune to damage during Thunder Kick
+        Game.audio.play("kick");
         isComboSteering = false;
 
         // 🎯 Smart Skill-Shot:
@@ -421,6 +423,7 @@
         isPunching = true;
         isSpecialActive = true;
         isComboSteering = true;
+        Game.audio.play("combo");
 
         // 🎯 Smart Skill-Shot:
         if (touchJoyVector && touchJoyVector.active) {
@@ -654,6 +657,7 @@
         }
 
         if (!actions[punchAnim]) return;
+        Game.audio.play(isCrit ? "swingHeavy" : "swing");
 
         // 🥋 Multi-strike tiers — one click fires N hits at high attack speed
         let punchesPerClick = 1;

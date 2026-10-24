@@ -211,6 +211,7 @@
         const floorY = getElevation(character.position.x, character.position.z);
         if (keys.space && isGrounded && !isFrozen) {
           velocityY = 13.5;
+          Game.audio.play("jump");
           isGrounded = false;
         }
 

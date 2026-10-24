@@ -20,6 +20,7 @@
       function triggerMobileJump() {
         if (isGrounded && !isPlayerDead && !isGamePaused && !isFrozen) {
           velocityY = 13.5;
+          Game.audio.play("jump");
           isGrounded = false;
         }
       }

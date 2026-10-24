@@ -15,3 +15,10 @@ Open DevTools console first. Expect no red errors at any step. A failure to star
 - [ ] Player death -> revive (once) -> death screen -> name/score saved -> restart
 - [ ] Mobile: joystick, buttons, camera drag (if testing on touch)
 - [ ] Console: `__legacyWhere(1234)` returns a `file:line` string
+
+## Sound
+- [ ] Nothing plays before the first tap/click/key; after it, sounds work (iPhone: tap anything once)
+- [ ] Punch swing + hit, crit sounds different, skills 1/2/3, dash, jump
+- [ ] Taking damage, dodge, death, revive; bat death; wave start; boss spawn/death; level-up + pick
+- [ ] Mute button (under the pause button) and the `M` key toggle sound; setting survives a reload
+- [ ] Typing `m` in the name box does NOT toggle mute

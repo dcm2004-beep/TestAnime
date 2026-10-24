@@ -137,6 +137,7 @@
       }
 
       function spawnDodgeText() {
+        Game.audio.play("dodge");
         const pos = character.position.clone();
         pos.y += 2.0;
         pos.project(camera);

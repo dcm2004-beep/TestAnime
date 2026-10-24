@@ -859,6 +859,32 @@
         user-select: none;
         box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
       }
+      #sfx-toggle {
+        position: fixed;
+        top: calc(52px + env(safe-area-inset-top, 0px));
+        right: calc(8px + env(safe-area-inset-right, 0px));
+        width: 40px;
+        height: 40px;
+        background: rgba(18, 22, 34, 0.88);
+        border: 2px solid rgba(116, 192, 252, 0.6);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 16px;
+        z-index: 500;
+        cursor: pointer;
+        touch-action: none;
+        user-select: none;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+      }
+      #sfx-toggle.off {
+        opacity: 0.6;
+        border-color: rgba(255, 255, 255, 0.3);
+      }
+      #sfx-toggle:active {
+        transform: scale(0.9);
+      }
       #pause-btn:active {
         transform: scale(0.9);
       }

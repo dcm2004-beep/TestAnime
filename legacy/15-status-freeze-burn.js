@@ -115,6 +115,7 @@
         if (isFrozen || freezeImmuneT > 0 || isPlayerDead || isSkill2Immune)
           return;
         isFrozen = true;
+        Game.audio.play("freeze");
         freezeT = sec;
         isHealing = false;
         healVFX.group.visible = false;

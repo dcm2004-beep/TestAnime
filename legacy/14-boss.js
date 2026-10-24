@@ -72,6 +72,7 @@
       }
       function spawnBoss() {
         if (!bossAsset || bossObj) return;
+        Game.audio.play("bossSpawn");
         const mesh = cloneSkinnedMesh(bossAsset.idle.scene);
         mesh.scale.setScalar(BOSS_SCALE);
         const hands = [],
@@ -383,6 +384,7 @@
         }
         b.hp = Math.max(0, b.hp - amount);
         totalDamageDealt += amount;
+        Game.audio.hit(hitType);
         const ls = $("live-damage-score");
         if (ls) ls.innerText = totalDamageDealt.toLocaleString();
         const txt =
@@ -436,6 +438,7 @@
         }
       }
       function bossDie(b) {
+        Game.audio.play("bossDie");
         b.state = "dying";
         clearBossComboRing(b);
         b.ai = "dying";

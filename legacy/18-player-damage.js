@@ -53,6 +53,7 @@
       }
 
       function triggerKarmicBlast() {
+        Game.audio.play("boom");
         const blastDmg = Math.round(180 * enemyMult() * getBloodDebtMult());
         const healAmt = Math.round(PLAYER_MAX_HP * 0.1);
         const AOE_RADIUS = 10;
@@ -114,6 +115,7 @@
         // Restore state
         playerHP = Math.round(PLAYER_MAX_HP * 0.5);
         isPlayerDead = false;
+        Game.audio.play("revive");
         isFrozen = false;
         freezeMesh.visible = false;
         isHealing = false;
@@ -213,6 +215,7 @@
         }
 
         playerHP = Math.max(0, playerHP - reducedAmount);
+        Game.audio.play("hurt");
         updatePlayerUI();
 
         // 💀 Blood Debt — each hit taken grants a stack
@@ -334,6 +337,7 @@
         if (playerHP <= 0) {
           if (tryRevive()) return;
           isPlayerDead = true;
+          Game.audio.play("death");
           document.exitPointerLock();
           const endScore = document.getElementById("end-damage-score");
           if (endScore) endScore.innerText = totalDamageDealt.toLocaleString();

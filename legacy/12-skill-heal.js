@@ -143,6 +143,7 @@
           isComboSteering = false;
         }
         isHealing = true;
+        Game.audio.play("heal");
         healT = 0;
         healTickT = 0;
         totalHealedThisTrance = 0;
