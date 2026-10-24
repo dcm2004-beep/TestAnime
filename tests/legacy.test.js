@@ -58,3 +58,13 @@ test("loadLegacy surfaces a missing file as an error", async () => {
   await assert.rejects(loadLegacy({ fetchFn: async () => ({ ok: false, status: 404 }) }), /HTTP 404/);
   delete globalThis.window; delete globalThis.document;
 });
+
+test("every touch skill/attack button in index.html has a touchstart handler", () => {
+  const html = fs.readFileSync(new URL("../index.html", import.meta.url), "utf8");
+  const code = LEGACY_FILES.map(read).join("\n");
+  const ids = { "touch-attack": "btnAttack", "touch-skill-1": "btnSkill1", "touch-skill-2": "btnSkill2" };
+  for (const [id, v] of Object.entries(ids)) {
+    assert.ok(html.includes(`id="${id}"`), `${id} missing from html`);
+    assert.match(code, new RegExp(`${v}\\.addEventListener\\(\\s*"touchstart"`), `${id} (${v}) has no touchstart handler`);
+  }
+});

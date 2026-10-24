@@ -279,6 +279,22 @@
         );
       }
 
+      // ⚡ KICK button — mirrors the desktop "2" key (was declared but never wired up)
+      if (btnSkill2) {
+        btnSkill2.addEventListener(
+          "touchstart",
+          (e) => {
+            e.preventDefault();
+            if (isSpecialActive || isDashing) {
+              queueSpecialSkill("kick");
+            } else {
+              triggerSkillElectricKick();
+            }
+          },
+          { passive: false },
+        );
+      }
+
       // ⚡ Mobile FOCUS button — hold to channel cooldowns faster
       {
         const row = document.querySelector(".touch-skill-row");
