@@ -116,6 +116,7 @@
         playerHP = Math.round(PLAYER_MAX_HP * 0.5);
         isPlayerDead = false;
         Game.audio.play("revive");
+        Game.audio.music.duck(1);
         isFrozen = false;
         freezeMesh.visible = false;
         isHealing = false;
@@ -338,6 +339,7 @@
           if (tryRevive()) return;
           isPlayerDead = true;
           Game.audio.play("death");
+          Game.audio.music.duck(0.2, 0.6);
           document.exitPointerLock();
           const endScore = document.getElementById("end-damage-score");
           if (endScore) endScore.innerText = totalDamageDealt.toLocaleString();
@@ -352,6 +354,7 @@
 
       function respawnPlayer() {
         isPlayerDead = false;
+        Game.audio.music.duck(1);
         playerHP = PLAYER_MAX_HP;
         totalDamageDealt = 0;
         isPunching = false;

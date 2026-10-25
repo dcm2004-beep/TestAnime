@@ -16,7 +16,10 @@ window.Game = { bus: createBus(), waves, damage, audio, data: { BAT_TYPES } };
 for (const ev of ["pointerdown", "touchend", "click", "keydown"]) {
   window.addEventListener(ev, () => audio.unlock(), { capture: true, passive: true });
 }
-document.addEventListener("visibilitychange", () => { if (!document.hidden) audio.unlock(); });
+document.addEventListener("visibilitychange", () => {
+  if (document.hidden) audio.music.pause();
+  else { audio.unlock(); audio.music.resume(); }
+});
 
 // Mute button (under the pause button) + "M" key.
 {

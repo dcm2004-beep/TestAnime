@@ -144,6 +144,7 @@
         isGamePaused = state !== undefined ? state : !isGamePaused;
         const ps = document.getElementById("pause-screen");
         if (ps) ps.style.display = isGamePaused ? "flex" : "none";
+        Game.audio.music.duck(isGamePaused ? 0.3 : 1);
         if (isGamePaused) {
           document.exitPointerLock();
         } else {
@@ -169,6 +170,7 @@
 
         // ✅ Actually unpause (previously this called itself recursively)
         isGamePaused = false;
+        Game.audio.music.duck(1);
         const ps = document.getElementById("pause-screen");
         if (ps) ps.style.display = "none";
         clock.getDelta();

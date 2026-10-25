@@ -167,6 +167,7 @@
         const ds = document.getElementById("death-screen");
         if (ds) ds.style.display = "none";
         if (isPlayerDead) respawnPlayer();
+        Game.audio.music.play("battle");
         enterLandscapeMode();
         try {
           clock.getDelta();
@@ -188,6 +189,7 @@
         const ds = document.getElementById("death-screen");
         if (ds) ds.style.display = "none";
         if (isPlayerDead) isPlayerDead = false;
+        Game.audio.music.play("battle");
         enterLandscapeMode();
         try {
           clock.getDelta();

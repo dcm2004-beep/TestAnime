@@ -207,6 +207,7 @@
       function removeBoss() {
         const b = bossObj;
         if (!b) return;
+        if (b.fireSfx) b.fireSfx.stop(0.1);
         clearBossComboRing(b);
         scene.remove(b.mesh);
         const i = activeBats.indexOf(b);
@@ -245,8 +246,13 @@
           return;
         }
         b.ai = "fire";
+        // 🔊 Wind-up sound lasts exactly as long as the wind-up animation (frames 0..FIRE_START at 1.5x speed)
+        b.flameOn = false;
+        if (b.fireSfx) b.fireSfx.stop(0.1);
+        b.fireSfx = Game.audio.play("bossFireCharge", { duration: BOSS_FIRE_START / BOSS_FPS / 1.5 });
       }
       function startDodge(b) {
+        if (b.fireSfx) b.fireSfx.stop(0.1); // interrupted fireball: cut its sound
         const M = b.mesh.position,
           P = character.position;
         const toP = Math.atan2(P.x - M.x, P.z - M.z);
@@ -316,6 +322,7 @@
       }
 
       function startFall(b) {
+        if (b.fireSfx) b.fireSfx.stop(0.1);
         b.ai = "fall";
         b.fallT = 0;
         b.plan = null;
@@ -438,6 +445,7 @@
         }
       }
       function bossDie(b) {
+        if (b.fireSfx) b.fireSfx.stop(0.1);
         Game.audio.play("bossDie");
         b.state = "dying";
         clearBossComboRing(b);
@@ -640,6 +648,12 @@
         } else if (b.ai === "fire") {
           const fr = b.cur ? b.cur.time * BOSS_FPS : 0;
           if (fr >= BOSS_FIRE_START && fr <= BOSS_FIRE_END) {
+            if (!b.flameOn) {
+              // 🔊 Flame sound lasts exactly as long as the damage window left in the animation
+              b.flameOn = true;
+              if (b.fireSfx) b.fireSfx.stop(0.05);
+              b.fireSfx = Game.audio.play("bossFlame", { duration: (BOSS_FIRE_END - fr) / BOSS_FPS / 1.5 });
+            }
             const p =
               (fr - BOSS_FIRE_START) / (BOSS_FIRE_END - BOSS_FIRE_START);
             firePoints.material.size = (1.3 + 2.4 * p) * BOSS_SPD; // the fireball grows
