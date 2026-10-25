@@ -99,7 +99,7 @@ const RAW = {
   dodge:      (c, o) => { whoosh(c, o, { f0: 1000, f1: 2200, dur: 0.14, vol: 1.5, attack: 0.03, q: 1.2 }); return 0.16; },
   death:      (c, o) => { tone(c, o, { type: "sawtooth", f0: 160, f1: 28, dur: 1.3, vol: 0.6, lp: 500, sat: 2 }); tone(c, o, { f0: 80, f1: 22, dur: 1.3, vol: 0.8, sat: 3 }); grit(c, o, { f0: 1000, f1: 50, dur: 1.2, vol: 0.5, sat: 2 }); return 1.4; },
   revive:     (c, o) => { pad(c, o, [130.8, 196, 261.6, 392], { dur: 1.0, attack: 0.35, vol: 0.28, step: 0.07, lp: 1400 }); return 1.1; },
-  freeze:     (c, o) => { noise(c, o, { f0: 4200, f1: 1600, q: 6, dur: 0.35, vol: 0.5, sat: 2 }); noise(c, o, { filter: "highpass", f0: 5500, dur: 0.25, vol: 0.35 }); thump(c, o, { f0: 90, f1: 45, dur: 0.2, vol: 0.5 }); return 0.45; },
+  freeze:     (c, o) => { noise(c, o, { f0: 4200, f1: 1600, q: 6, dur: 0.35, vol: 0.5, sat: 2 }); noise(c, o, { filter: "highpass", f0: 5500, dur: 0.25, vol: 0.35 }); thump(c, o, { f0: 90, f1: 45, dur: 0.2, vol: 0.5 }); return 0.35; },
   // --- enemies / world
   spit:       (c, o) => { tone(c, o, { f0: 320, f1: 90, dur: 0.12, vol: 0.6, sat: 2 }); grit(c, o, { f0: 1400, f1: 300, dur: 0.1, vol: 0.4, sat: 2 }); return 0.14; },
   beam:       (c, o) => { tone(c, o, { type: "sawtooth", f0: 65, f1: 240, dur: 0.6, vol: 0.5, lp: 700, sat: 3 }); whoosh(c, o, { f0: 250, f1: 1300, dur: 0.6, vol: 0.9, attack: 0.1, q: 1 }); return 0.65; },
